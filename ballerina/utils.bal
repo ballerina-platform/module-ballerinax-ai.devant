@@ -45,6 +45,12 @@ isolated function getContentDispositionForFormData(string partName) returns mime
 }
 
 isolated function readResponseAsString(http:Response response) returns string|Error {
+    if response.statusCode == http:STATUS_UNAUTHORIZED {
+        return error(string `invalid access token or unauthorized access to the service.`);
+    }
+    if response.statusCode != http:STATUS_OK {
+        return error(string `request failed with status code ${response.statusCode}`);
+    }
     if response.getContentType() != APPLICATION_NDJSON {
         return error(string `unexpected content type '${response.getContentType()}', expected 'application/x-ndjson'.`);
     }

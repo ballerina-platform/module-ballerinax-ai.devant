@@ -21,6 +21,12 @@ import ballerina/test;
 
 service on new http:Listener(9090) {
     resource function post retrieve/chunks(http:Request req) returns http:Response|error {
+        if req.getHeader("Authorization") != "Bearer token" {
+            http:Response unauthorized = new;
+            unauthorized.statusCode = http:STATUS_UNAUTHORIZED;
+            return unauthorized;
+        }
+
         // Mock the cunk service
         mime:Entity[] parts = check req.getBodyParts();
         string[] contents = from mime:Entity part in parts
@@ -60,4 +66,21 @@ isolated function testChunker() returns error? {
     ai:Chunk[] chunks = check chunker.chunk(doc);
     test:assertEquals(chunks.length(), 25);
     test:assertEquals(chunks[0].metadata?.fileName, "sample.md");
+}
+
+@test:Config
+isolated function testChunkerWithInvalidToken() returns error? {
+    BinaryDataLoader loader = check new BinaryDataLoader("./tests/resources/sample.md");
+    ai:Document|ai:Document[] doc = check loader.load();
+    if doc is ai:Document[] {
+        return error("An ai:Document is expected");
+    }
+
+    Chunker chunker = check new ("http://localhost:9090", "invalid-token");
+    ai:Chunk[]|ai:Error chunks = chunker.chunk(doc);
+    if chunks is ai:Chunk[] {
+        test:assertFail("An 'ai:Error' is expected");
+    }
+    test:assertEquals(chunks.message(), "failed to retrieve chunks: "
+            + "invalid access token or unauthorized access to the service.");
 }
