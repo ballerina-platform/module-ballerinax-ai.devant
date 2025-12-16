@@ -1,7 +1,7 @@
 [package]
 authors = ["Ballerina"]
 distribution = "2201.12.0"
-keywords = ["AI", "Devant", "Chunkers"]
+keywords = ["Devant", "Chunkers", "Vendor/WSO2", "Area/AI", "Type/Util"]
 license = ["Apache-2.0"]
 name = "ai.devant"
 org = "ballerinax"
