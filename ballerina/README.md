@@ -1,8 +1,12 @@
-# Ballerina AI Devant Module
-
 ## Overview
 
-The `ai.devant` module provides APIs to interact with [Devant by WSO2](https://wso2.com/devant/), enabling document chunking and loading documents from a directory in the format expected by the Devant Chunker. It integrates seamlessly with the [`ballerina/ai`](https://central.ballerina.io/ballerina/ai/latest) module to provide a smooth workflow for processing AI documents using Devant AI services.
+The `ai.devant` module provides APIs to interact with [Devant by WSO2](https://wso2.com/devant/), enabling document chunking and loading documents from a directory in the format expected by the Devant Chunker. It integrates seamlessly with the [`ai`](https://central.ballerina.io/ballerina/ai/latest) module to provide a smooth workflow for processing AI documents using Devant AI services.
+
+### Key Features
+
+- Load documents from a directory in the format expected by the Devant Chunker
+- Chunk documents using the Devant AI service
+- Seamless integration with the `ai` module for AI document processing workflows
 
 ## Prerequisites
 
