@@ -6,7 +6,8 @@ license = ["Apache-2.0"]
 name = "ai.devant"
 org = "ballerinax"
 repository = "https://github.com/ballerina-platform/module-ballerinax-ai.devant"
-version = "1.0.3"
+version = "1.0.4"
+icon="icon.png"
 
 [platform.java21]
 graalvmCompatible = true
