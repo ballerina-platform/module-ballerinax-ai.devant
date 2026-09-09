@@ -408,7 +408,7 @@ dependencies = [
 [[package]]
 org = "ballerinax"
 name = "ai.devant"
-version = "1.0.3"
+version = "1.0.5"
 dependencies = [
 	{org = "ballerina", name = "ai"},
 	{org = "ballerina", name = "file"},
